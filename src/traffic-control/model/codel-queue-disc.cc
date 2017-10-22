@@ -423,11 +423,12 @@ Time
 CoDelQueueDisc::GetTarget (void)
 {
   while(m_target)
-  {
-    m_Bmax=cbrt(16*m_C*m_N*m_N*I*I*(m_arri-m_C))-m_C*m_Tp;
-    if(m_Bmax>0.005*m_C)
+  {Double Bmax;
+    
+    Bmax=cbrt(16*m_C*m_N*m_N*I*I*(m_arri-m_C))-m_C*m_Tp;
+    if(Bmax>0.005*m_C)
     {
-      m_target=min(floor(m_c*m_Dmax),floor(m_Bmax)/m_C;
+      m_target=min(floor(m_C*m_Dmax),floor(Bmax)/m_C;
       
     }
     else
