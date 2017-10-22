@@ -240,6 +240,11 @@ private:
   uint32_t m_state2;                      //!< Number of times we perform next drop while in dropping state
   uint32_t m_state3;                      //!< Number of times we enter drop state and drop the fist packet
   uint32_t m_states;                      //!< Total number of times we are in state 1, state 2, or state 3
+  Time m_Dmax;
+  uint32_t m_N;
+  uint32_t m_C;
+  Time m_Tp;
+  double m_arri;
   QueueDiscMode m_mode;                   //!< The operating mode (Bytes or packets)
 };
 
