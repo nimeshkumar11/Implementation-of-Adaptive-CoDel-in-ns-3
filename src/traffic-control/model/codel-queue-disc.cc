@@ -121,6 +121,31 @@ TypeId CoDelQueueDisc::GetTypeId (void)
                      "Time until next packet drop",
                      MakeTraceSourceAccessor (&CoDelQueueDisc::m_dropNext),
                      "ns3::TracedValueCallback::Uint32")
+    .AddAttribute   ("Dmax",
+                   "The CoDel algorithm initialize Dmax",
+                   StringValue ("7ms"),
+                   MakeTimeAccessor (&CoDelQueueDisc::m_Dmax),
+                   MakeTimeChecker ())
+    .AddAttribute ("N",
+                   "The number of TCP flows",
+                   StringValue ("20"),
+                   MakeTimeAccessor (&CoDelQueueDisc::m_N),
+                   MakeTimeChecker ())
+    .AddAttribute ("C",
+                   "bottleneck link capacity",
+                   StringValue ("2500"),
+                   MakeTimeAccessor (&CoDelQueueDisc::m_C),
+                   MakeTimeChecker ())
+    .AddAttribute ("Tp",
+                   "Propagation Delay",
+                   StringValue ("100 ms"),
+                   MakeTimeAccessor (&CoDelQueueDisc::m_Tp),
+                   MakeTimeChecker ())
+    .AddAttribute ("arri",
+                   "total arrival rate",
+                   StringValue (""),
+                   MakeTimeAccessor (&CoDelQueueDisc::m_arri),
+                   MakeTimeChecker ())
   ;
 
   return tid;
@@ -397,7 +422,20 @@ CoDelQueueDisc::GetQueueSize (void)
 Time
 CoDelQueueDisc::GetTarget (void)
 {
-  return m_target;
+  while(m_target)
+  {
+    C,N,Tp,arri;
+    Bmax=cbrt(16*C*N*N*I*I*(arri-C))-C*Tp;
+    if(Bmax>0.005*C)
+    {
+      b=min(floor(c*Dmax),floor(Bmax));
+      m_target=b/C;
+      
+    }
+    else
+      m_target=0.005;
+  }
+ return m_target;
 }
 
 Time
