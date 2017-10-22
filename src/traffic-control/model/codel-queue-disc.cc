@@ -432,7 +432,7 @@ CoDelQueueDisc::GetTarget (void)
       
     }
     else
-      m_target=StringValue ("5ms"),
+      m_target=Time ("5ms"),
   }
  return m_target;
 }
