@@ -138,7 +138,7 @@ TypeId CoDelQueueDisc::GetTypeId (void)
                    MakeTimeChecker ())
     .AddAttribute ("Tp",
                    "Propagation Delay",
-                   StringValue ("100 ms"),
+                   StringValue ("100ms"),
                    MakeTimeAccessor (&CoDelQueueDisc::m_Tp),
                    MakeTimeChecker ())
     .AddAttribute ("arri",
