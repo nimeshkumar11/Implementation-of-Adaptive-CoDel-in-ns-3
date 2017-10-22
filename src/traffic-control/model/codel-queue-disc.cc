@@ -425,7 +425,7 @@ CoDelQueueDisc::GetTarget (void)
   while(m_target)
   {double Bmax;
     
-    Bmax=cbrt(16*m_C*m_N*m_N*I*I*(m_arri-m_C))-m_C*m_Tp;
+    Bmax=cbrt(16*m_C*m_N*m_N*m_interval*m_interval*(m_arri-m_C))-m_C*m_Tp;
     if(Bmax>0.005*m_C)
     {
       m_target=std::min(floor(m_C*m_Dmax),floor(Bmax))/m_C;
