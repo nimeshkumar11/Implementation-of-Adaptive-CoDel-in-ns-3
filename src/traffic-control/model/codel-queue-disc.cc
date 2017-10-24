@@ -128,14 +128,14 @@ TypeId CoDelQueueDisc::GetTypeId (void)
                    MakeTimeChecker ())
     .AddAttribute ("N",
                    "The number of TCP flows",
-                   StringValue ("20"),
-                   MakeTimeAccessor (&CoDelQueueDisc::m_N),
-                   MakeTimeChecker ())
+                   UintegerValue ("20"),
+                 MakeUintegerAccessor (&CoDelQueueDisc::m_N),
+                   MakeUintegerChecker<uint32_t> ())
     .AddAttribute ("C",
                    "bottleneck link capacity",
-                   StringValue ("2500"),
-                   MakeTimeAccessor (&CoDelQueueDisc::m_C),
-                   MakeTimeChecker ())
+                   UintegerValue ("2500"),
+                  MakeUintegerAccessor (&CoDelQueueDisc::m_C),
+                   MakeUintegerChecker<uint32_t> ())
     .AddAttribute ("Tp",
                    "Propagation Delay",
                    StringValue ("100ms"),
@@ -147,7 +147,6 @@ TypeId CoDelQueueDisc::GetTypeId (void)
                    MakeTimeAccessor (&CoDelQueueDisc::m_arri),
                    MakeTimeChecker ())
   ;
-
   return tid;
 }
 
@@ -429,26 +428,24 @@ CoDelQueueDisc::GetTarget (void)
     if(Bmax>0.005*m_C)
     {
       m_target=std::min(floor(m_C*(m_Dmax),floor(Bmax))/m_C;
-      
     }
     else
       m_target=Time ("5ms");
   }
  return m_target;
 }
-
 Time
 CoDelQueueDisc::GetInterval (void)
 {
   return m_interval;
 }
-
+                        
 uint32_t
 CoDelQueueDisc::GetDropNext (void)
 {
   return m_dropNext;
 }
-
+                        
 Ptr<const QueueDiscItem>
 CoDelQueueDisc::DoPeek (void) const
 {
