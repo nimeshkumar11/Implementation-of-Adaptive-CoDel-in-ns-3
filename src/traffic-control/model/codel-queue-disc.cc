@@ -145,7 +145,12 @@ TypeId CoDelQueueDisc::GetTypeId (void)
                    "total arrival rate",
                    StringValue (""),
                    MakeTimeAccessor (&CoDelQueueDisc::m_arri),
-                   MakeTimeChecker ())
+                   MakeTimeChecker ()) 
+    .AddAttribute ("AdaptiveCodel",
+                   "isAdaptiveCodel",
+                   BooleanValue (false),
+                   MakeBooleanAccessor (&CoDelQueueDisc::m_AdaptiveCodel),
+MakeBooleanChecker ())
   ;
   return tid;
 }
