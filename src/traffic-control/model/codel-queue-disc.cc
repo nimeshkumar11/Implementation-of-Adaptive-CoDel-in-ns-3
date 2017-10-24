@@ -417,12 +417,11 @@ CoDelQueueDisc::GetQueueSize (void)
       NS_ABORT_MSG ("Unknown mode.");
     }
 }
-
 Time
-CoDelQueueDisc::GetTarget (void)
+CoDelQueueDisc::AdaptiveCodel (void)
 {
-  while(m_target)
-  {double Bmax;
+  
+    double Bmax;
     
     Bmax=(cbrt(16*m_C*m_N*m_N*m_interval*m_interval*(m_arri-m_C)))-(m_C*m_Tp);
     if(Bmax>0.005*m_C)
@@ -431,8 +430,18 @@ CoDelQueueDisc::GetTarget (void)
     }
     else
       m_target=Time ("5ms");
-  }
+ 
  return m_target;
+}
+Time
+CoDelQueueDisc::GetTarget (void)
+{
+  if(m_isAdaptiveCodel)
+  {
+     m_target=AdaptiveCodel();
+  }
+   
+   return m_target;
 }
 Time
 CoDelQueueDisc::GetInterval (void)
